@@ -18,6 +18,7 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
         Server webServer = Server.createWebServer ("-web", "-webAllowOthers", "-webPort", "8082").start();
+        System.out.println("El link es = "+ webServer.getURL());
 
         
         UserDAO.createTable();
@@ -26,5 +27,8 @@ public class Main {
         Scanner teclat = new Scanner(System.in);
         System.out.println("Introdueix una tecla per acabar: ");
         String sortir = teclat.nextLine();
+
+        System.out.println("Aturant el servidor...");
+        webServer.stop();
     }
 }
