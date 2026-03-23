@@ -43,6 +43,14 @@ public class UserDAO {
             sql = "INSERT INTO USERS (username, email) VALUES ('Pau', 'pau@exemple.com')";
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
+
+            sql = "INSERT INTO USERS (username, email) VALUES ('Miquel', 'miquel@exemple.com')";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+
+            sql = "INSERT INTO USERS (username, email) VALUES ('Albert', 'albert@exemple.com')";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
         }
         catch (Exception e) {
             System.out.println("Hey ha dado error ! ! !");
