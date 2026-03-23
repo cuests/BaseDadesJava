@@ -22,7 +22,8 @@ public class Main {
 
         
         UserDAO.createTable();
-        UserDAO.insterSampleUsers();
+        UserDAO.insertSampleUsers();
+        UserDAO.createTable();
 
         Scanner teclat = new Scanner(System.in);
         System.out.println("Introdueix una tecla per acabar: ");

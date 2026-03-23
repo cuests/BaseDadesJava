@@ -13,3 +13,12 @@ INSERT INTO USERS (username, email) VALUES ('Maria', maria@exemple.com) [42001-2
 2026-03-18 08:47:31 jdbc[4]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]USERNAME"; expected "UPDATE, USE"; SQL statement:
 USERNAME [42001-214]
+2026-03-23 10:29:37 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO USERS (username, email) VALUES ('Maria', maria[*]@exemple.com)"; expected "(, ., [, ::, AT, FORMAT, *, /, %, +, -, ||, NOT, IS, ILIKE, REGEXP, AND, OR, ,, )"; SQL statement:
+INSERT INTO USERS (username, email) VALUES ('Maria', maria@exemple.com) [42001-214]
+2026-03-23 10:30:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO USERS (username, email) VALUES ('Maria', maria[*]@exemple.com)"; expected "(, ., [, ::, AT, FORMAT, *, /, %, +, -, ||, NOT, IS, ILIKE, REGEXP, AND, OR, ,, )"; SQL statement:
+INSERT INTO USERS (username, email) VALUES ('Maria', maria@exemple.com) [42001-214]
+2026-03-23 10:32:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO USERS (username, email) VALUES ('Maria', maria[*]@exemple.com)"; expected "(, ., [, ::, AT, FORMAT, *, /, %, +, -, ||, NOT, IS, ILIKE, REGEXP, AND, OR, ,, )"; SQL statement:
+INSERT INTO USERS (username, email) VALUES ('Maria', maria@exemple.com) [42001-214]
