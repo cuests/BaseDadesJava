@@ -42,6 +42,7 @@ public class UserDAO {
 
             sql = "INSERT INTO USERS (username, email) VALUES ('Pau', 'pau@exemple.com')";
             pstmt = conn.prepareStatement(sql);
+            //en cas de voler fer selects, es fa executeQuery() i no executeUpdate()
             pstmt.executeUpdate();
 
             sql = "INSERT INTO USERS (username, email) VALUES ('Miquel', 'miquel@exemple.com')";
@@ -59,8 +60,19 @@ public class UserDAO {
     }
     //fer al main 2 opcions de menu
     // que per afegir usuaris ho demani per text i que mostri els usuaris
-    public static void insertUser (String username, String email) {
+    public static boolean insertUser (String usuari, String email) {
+        String sql = "INSERT INTO USERS (username, email) VALUES (?, ?)";
+        try(Connection conn = DatabaseConnection.getConnection();) {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, usuari);
+            pstmt.setString(2, email);
+            pstmt.executeUpdate();
+            return true;
 
+        } catch (Exception e) {
+            System.out.println("Error al inserir usuari manualment: " + e.getMessage());
+        }
+        return false;
     }
 
     public static List<User> getAllUsers() {
@@ -84,5 +96,37 @@ public class UserDAO {
         return users;
     }
 
+
+    public static boolean updateUser (User user){
+        String sql = "UPDATE users SET email = ? WHERE username = ?";
+        try(Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, user.getEmail());
+            pstmt.setString(2, user.getUsername());
+
+            int rowsUpdated = pstmt.executeUpdate();
+
+            return rowsUpdated > 0;
+        }
+        catch(Exception e) {
+            System.err.println("Error al actualitzar l'usuari" +e.getMessage());
+            return false;
+        }
     }
+
+    public static boolean deleteUser (User user){
+        String sql = "DELETE from users WHERE username = ?";
+        try(Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, user.getUsername());
+            int rowsUpdated = pstmt.executeUpdate();
+            return rowsUpdated > 0;
+            
+        } catch (Exception e) {
+            System.err.println("Error al eliminar l'usuari" +e.getMessage());
+            return false;
+        }
+    }
+}
     

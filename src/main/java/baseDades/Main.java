@@ -21,30 +21,61 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         Server webServer = Server.createWebServer ("-web", "-webAllowOthers", "-webPort", "8082").start();
         System.out.println("El link es = "+ webServer.getURL());
+        Scanner teclat = new Scanner(System.in);
 
         
         UserDAO.createTable();
         UserDAO.insertSampleUsers();
-        UserDAO.createTable();
-        System.out.println("Obteniendo usuarios de la base de datos...");
+        boolean sortir = false;
 
-        // LLISTA D'USUARIS IMPLEMENTACIÓ
-        List<User> llistaUsuaris = UserDAO.getAllUsers();
-        if (llistaUsuaris.isEmpty()) {
-            System.out.println("No se ha encontrado ningún usuario.");
-        } else {
-            System.out.println("--- Lista de Usuarios ---");
-            for (User u : llistaUsuaris) {
-                System.out.println(u); 
+        while (!sortir){
+        System.out.println("-- USUARIS MANUALS --");
+        System.out.println("0 = Veure usuaris --");
+        System.out.println("1 = Afegir usuari --");
+        System.out.println("2 = Modificar usuari --");
+        System.out.println("3 = Eliminar usuari --");
+        System.out.println("4 = ACABAR --");
+        int funcio = teclat.nextInt();
+        teclat.nextLine();
+        switch (funcio){
+            case 0:
+                List<User> llistaUsuaris = UserDAO.getAllUsers();
+                if (llistaUsuaris.isEmpty()) {
+                    System.out.println("No s'ha trobat cap usuari.");
+                } 
+                else {
+                    for (User u : llistaUsuaris) {
+                        System.out.println(u); 
+                    }
+                }
+                break;
+            case 1: 
+                System.out.println("Nom del usuari: ");
+                String usuari = teclat.nextLine();
+                System.out.println("Email del usuari: ");
+                String email = teclat.nextLine();
+                UserDAO.insertUser(usuari, email);
+                break;
+            case 2:
+                System.out.println("Nom del usuari: ");
+                String usuariModify = teclat.nextLine();
+                System.out.println("Nova direcció de correu: ");
+                String emailModify = teclat.nextLine();
+                User usernou = new  User (usuariModify, emailModify);
+                UserDAO.updateUser(usernou);
+                break;
+            case 3:
+                System.out.println("Nom del usuari: ");
+                String usuariDelete = teclat.nextLine();
+                User userdelete = new  User (usuariDelete, "");
+                UserDAO.deleteUser(userdelete);
+                break;
+            case 4:
+                System.out.println("Aturant el servidor...");
+                webServer.stop();
+                sortir = true;
+                break;
             }
         }
-
-
-        Scanner teclat = new Scanner(System.in);
-        System.out.println("Introdueix una tecla per acabar: ");
-        String sortir = teclat.nextLine();
-
-        System.out.println("Aturant el servidor...");
-        webServer.stop();
     }
 }
