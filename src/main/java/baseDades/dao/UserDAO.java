@@ -128,5 +128,30 @@ public class UserDAO {
             return false;
         }
     }
+
+    public static boolean searchUser (User user){
+        String sql = "SELECT username, email from users WHERE username = ?";
+        try(Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, user.getUsername());
+
+            ResultSet rs = pstmt.executeQuery();
+            //rs.next() --- vol dir que si existeis un registre amb aquest username (en aquest cas) doncs que faci X.
+            if (rs.next()){
+                //per cridar a les dades que ens ha donat amb rs
+                System.out.println("Nom de l'usuari: " + rs.getString("username"));
+                System.out.println("Mail de l'usuari: " + rs.getString("email"));
+                return true;   
+            }
+            else {
+                System.out.println("No s'ha trobat el usuari.");
+                return false;
+            }
+            
+        } catch (Exception e) {
+            System.err.println("Error al trobar l'usuari" +e.getMessage());
+            return false;
+        }
+    }
 }
     

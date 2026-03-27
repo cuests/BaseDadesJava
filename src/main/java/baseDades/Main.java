@@ -33,8 +33,9 @@ public class Main {
         System.out.println("0 = Veure usuaris --");
         System.out.println("1 = Afegir usuari --");
         System.out.println("2 = Modificar usuari --");
-        System.out.println("3 = Eliminar usuari --");
-        System.out.println("4 = ACABAR --");
+        System.out.println("3 = Buscar usuari --");
+        System.out.println("4 = Eliminar usuari --");
+        System.out.println("5 = ACABAR --");
         int funcio = teclat.nextInt();
         teclat.nextLine();
         switch (funcio){
@@ -64,16 +65,22 @@ public class Main {
                 User usernou = new  User (usuariModify, emailModify);
                 UserDAO.updateUser(usernou);
                 break;
-            case 3:
+            case 4:
                 System.out.println("Nom del usuari: ");
                 String usuariDelete = teclat.nextLine();
                 User userdelete = new  User (usuariDelete, "");
                 UserDAO.deleteUser(userdelete);
                 break;
-            case 4:
+            case 5:
                 System.out.println("Aturant el servidor...");
                 webServer.stop();
                 sortir = true;
+                break;
+            case 3:
+                System.out.println("Nom del usuari: ");
+                String usuariTrobar = teclat.nextLine();
+                User userTrobar = new  User (usuariTrobar, "");
+                UserDAO.searchUser(userTrobar);
                 break;
             }
         }
