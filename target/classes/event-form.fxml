@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseDades.controllers.EventFormController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label text="Nuevo Evento">
+        <font>
+            <Font name="System Bold" size="24.0"/>
+        </font>
+    </Label>
+
+    <GridPane hgap="10" vgap="15">
+        <Label text="Título:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="titleField" promptText="Ej: Partit de pàdel" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+        <Label text="Descripción:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextArea fx:id="descriptionArea" prefRowCount="3" promptText="Detalles del evento..." GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+        <Label text="Categoría:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <TextField fx:id="categoryField" promptText="Ej: Deporte" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+        <Label text="Fecha:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+        <Label text="Ciudad:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <TextField fx:id="cityField" promptText="Ej: Tarragona" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+    </GridPane>
+
+    <Button text="Guardar Evento" onAction="#guardarEvento" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+</VBox>
