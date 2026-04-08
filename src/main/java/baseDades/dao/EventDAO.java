@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import baseDades.dao.DataBase.DatabaseConnection;
+
 
 public class EventDAO {
 

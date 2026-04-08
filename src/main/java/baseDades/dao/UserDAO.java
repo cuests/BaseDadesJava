@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import baseDades.dao.DataBase.DatabaseConnection;
 import baseDades.model.User;
 
 
